@@ -200,6 +200,24 @@
             layers = <0>;
         };
 
+
+        // . + / → Browser Back
+        combo_dot_slash_back {
+            timeout-ms = <30>;
+            key-positions = <35 36>;
+            bindings = <&mkp MB4>;
+            layers = <0>;
+        };
+
+        // L + ; → Browser Forward
+        combo_l_semi_forward {
+            timeout-ms = <30>;
+            key-positions = <21 22>;
+            bindings = <&mkp MB5>;
+            layers = <0>;
+        };
+
+
     };
 
     keymap {
