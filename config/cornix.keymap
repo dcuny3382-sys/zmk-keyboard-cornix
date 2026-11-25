@@ -9,6 +9,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
+
 
 // tap windows for ctl alt and gui
 
@@ -46,6 +48,20 @@
     // Activate ADJUST layer by pressing raise and lower
 
     behaviors {
+        scroll_vertical: scroll_vertical {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>,
+                       <&msc SCRL_DOWN>;
+        };
+        
+        scroll_horizontal: scroll_horizontal {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_RIGHT>,
+                       <&msc SCRL_LEFT>;
+        };
+
         hm_l: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -186,6 +202,23 @@
             layers = <0>;
         };
 
+         
+        combo_home {
+            timeout-ms = <30>;
+            key-positions = <19 20>;
+            bindings = <&kp HOME>;
+            layers = <0>;
+        };
+        
+        combo_end {
+            timeout-ms = <30>;
+            key-positions = <20 21>;
+            bindings = <&kp END>;
+            layers = <0>;
+        };
+
+       
+
         combo_semi_quote_pgup {
             timeout-ms = <30>;
             key-positions = <22 23>;
@@ -239,7 +272,8 @@
 &mo 4    &hm_l LGUI Z   &kp X         &kp C         &kp V                &kp B        &none  &none  &kp N      &kp M                &kp COMMA        &kp DOT       &kp FSLH          &kp BACKSPACE
 &none    &none          &none         &lt 6 ESCAPE  &mo 2                &lt 5 SPACE                &kp ENTER  &mo 3                &lt 2 BACKSPACE  &none         &none             &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+          sensor-bindings = <&scroll_vertical &scroll_horizontal>;
+
         };
 
         win_layer {
@@ -258,7 +292,8 @@
 &kp LGUI  &trans         &trans        &trans         &trans               &trans  &trans  &trans  &trans  &trans               &trans         &trans        &trans            &trans
 &none     &none          &none         &trans         &trans               &trans                  &trans  &trans               &trans         &none         &none             &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&scroll_vertical &scroll_horizontal>;
+
         };
 
         Symbol_layer {
@@ -278,7 +313,8 @@
 &none  &none     &kp RBKT  &kp RPAR  &kp PIPE  &kp BSLH   &trans  &trans  &kp FSLH   &kp QUESTION  &kp GRAVE  &kp TILDE  &kp SQT   &none
 &none  &none     &none     &none     &trans    &trans                     &kp TILDE  &trans        &kp GRAVE  &none      &none     &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&scroll_vertical &scroll_horizontal>;
+
         };
 
         Mix_layer {
@@ -297,7 +333,8 @@
 &trans  &kp N6  &kp N7  &kp N8   &kp N9  &kp N0         &trans  &trans  &kp TAB   &kp INS    &kp HOME   &kp END   &trans   &trans
 &none   &none   &none   &kp TAB  &trans  &kp BACKSPACE                  &trans    &trans     &kp N3     &none     &none    &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&scroll_vertical &scroll_horizontal>;
+
         };
 
         Adjust_layer {
